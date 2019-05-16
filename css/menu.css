@@ -1,0 +1,133 @@
+.menu-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.toggler {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+}
+
+.humberger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 55px;
+    height: 55px;
+    padding: 0.8rem;
+    background: var(--prime-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.humberger > div {
+    position: relative;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    transition: all 0.4s ease-out
+}
+
+.humberger > div::before,
+.humberger > div::after  {
+    content: "";
+    position: absolute;
+    top: -10px;
+    width: 100%;
+    height: 2px;
+    background: inherit
+}
+
+.humberger > div::after {
+    top: 10px;
+}
+
+/* toggle animation */
+.toggler:checked + .humberger > div {
+    transform: rotate(135deg)
+}
+
+/* transform to X */
+.toggler:checked + .humberger > div::before,
+.toggler:checked + .humberger > div::after {
+    top: 0;
+    transform: rotate(90deg)
+}
+
+/* rotate on hover when checked */
+.toggler:checked:hover + .humberger > div {
+    transform: rotate(225deg)
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu > div {
+    background: rgba(40, 71, 75, 0.925);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0);
+    transition: all 0.5s ease;
+    border-radius: 50%;  
+}
+
+.menu > div > div {
+    text-align: center;
+    max-width: 100vw;
+    max-height: 100vh;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.menu > div > div > ul > li {
+    list-style: none;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+.menu > div > div > ul > li > a {
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.5 ease;
+}
+
+.menu > div > div > ul > li > a:hover {
+    color: var(--secondary-color);
+}
+
+/* show menu */
+.toggler:checked ~ .menu {
+    visibility: visible;
+}
+
+.toggler:checked ~ .menu > div {
+    transform: scale(2);
+    transition-duration: 0.5s;
+}
+
+.toggler:checked ~ .menu > div > div {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
